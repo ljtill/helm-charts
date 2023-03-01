@@ -41,3 +41,4 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install
+        working-directory: charts/cluster-api-operator
