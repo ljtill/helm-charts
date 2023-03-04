@@ -1,9 +1,9 @@
-name: Test Charts
+name: Tests
 
 on: pull_request
 
 jobs:
-  lint-test:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
