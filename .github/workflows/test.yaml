@@ -39,4 +39,5 @@ jobs:
         working-directory: charts/cluster-api-operator
 
       - name: Uninstall cert-manager
-        run: helm uninstall cert-manager
+        run: |
+          helm --namespace cert-manager delete cert-manager
