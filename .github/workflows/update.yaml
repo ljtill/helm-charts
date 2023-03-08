@@ -34,4 +34,5 @@ jobs:
             git push origin chore/charts
             gh pr create --title "chore(update): replace operator manifest" --body ""
             gh pr merge chore/charts --auto --squash
+            gh workflow run test.yaml --ref chore/charts
           fi
