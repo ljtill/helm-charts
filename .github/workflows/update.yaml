@@ -1,0 +1,35 @@
+name: Schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  default:
+    name: "Update"
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v3
+
+      - name: "Download manifest"
+        run: |
+          wget -O charts/cluster-api-operator/templates/operator.yaml \
+            https://github.com/kubernetes-sigs/cluster-api-operator/releases/latest/download/operator-components.yaml
+
+      - name: "Configure git"
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "action@github.com"
+
+      - name: "Merge manifest"
+        run: |
+          if [ -n "$(git status charts/ --porcelain)" ]; then
+            git checkout -b chore/charts
+            git add gen/
+            git commit -m 'chore(update): replace operator manifest'
+            git push origin chore/charts
+            gh pr create --title "gen: update manifests" --body ""
+            gh pr merge chore/charts --auto --squash
+          fi
