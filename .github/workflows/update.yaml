@@ -32,6 +32,14 @@ jobs:
             git add charts/
             git commit -m "chore(update): replace operator manifest"
             git push origin chore/charts
-            gh pr create --title "chore(update): replace operator manifest" --body ""
-            gh pr merge chore/charts --auto --squash
+            gh api \
+              --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              /repos/ljtill/helm-cluster-api/pulls \
+              -f title="chore(update): replace operator manifest" \
+              -f body="" \
+              -f head="chore/charts" \
+              -f base="main"
+            gh workflow run patch.yml --ref chore/charts
           fi
