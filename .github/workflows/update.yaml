@@ -41,5 +41,10 @@ jobs:
               -f body="" \
               -f head="chore/charts" \
               -f base="main"
-            gh workflow run patch.yml --ref chore/charts
+            gh api \
+              --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              /repos/ljtill/helm-cluster-api/actions/workflows/patch.yaml/dispatches \
+              -f ref="main"
           fi
