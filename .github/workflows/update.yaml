@@ -27,9 +27,9 @@ jobs:
         run: |
           if [ -n "$(git status charts/ --porcelain)" ]; then
             git checkout -b chore/charts
-            git add gen/
-            git commit -m 'chore(update): replace operator manifest'
+            git add charts/
+            git commit -m "chore(update): replace operator manifest"
             git push origin chore/charts
-            gh pr create --title "gen: update manifests" --body ""
+            gh pr create --title "chore(update): replace operator manifest" --body ""
             gh pr merge chore/charts --auto --squash
           fi
