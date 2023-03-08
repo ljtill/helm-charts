@@ -1,43 +1,44 @@
-name: Tests
+name: Pull Request
 
 on: pull_request
 
 jobs:
-  tests:
+  default:
+    name: Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: "Checkout repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Install helm
+      - name: "Install helm"
         uses: azure/setup-helm@v3
         with:
           version: v3.10.0
 
-      - name: Install python
+      - name: "Install python"
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
           check-latest: true
 
-      - name: Set up chart-testing
+      - name: "Setup tests"
         uses: helm/chart-testing-action@v2.3.1
 
-      - name: Create cluster
+      - name: "Create cluster"
         uses: helm/kind-action@v1.5.0
 
-      - name: Install cert-manager
+      - name: "Install dependencies"
         run: |
           helm repo add jetstack https://charts.jetstack.io
           helm repo update
           helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.11.0 --set installCRDs=true
 
-      - name: Run chart-testing
+      - name: "Run tests"
         run: ct install --chart-dirs . --charts .
         working-directory: charts/cluster-api-operator
 
-      - name: Uninstall cert-manager
+      - name: "Uninstall dependencies"
         run: |
           helm --namespace cert-manager delete cert-manager
