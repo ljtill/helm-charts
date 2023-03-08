@@ -10,7 +10,7 @@ jobs:
     name: "Update"
     runs-on: ubuntu-22.04
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
@@ -34,5 +34,4 @@ jobs:
             git push origin chore/charts
             gh pr create --title "chore(update): replace operator manifest" --body ""
             gh pr merge chore/charts --auto --squash
-            gh workflow run test.yaml --ref chore/charts
           fi
