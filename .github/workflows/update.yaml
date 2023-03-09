@@ -40,7 +40,9 @@ jobs:
               -f body="" \
               -f head="chore/charts" \
               -f base="main"
-            echo "PULL_REQUEST=true"
+            echo "PULL_REQUEST=true" >> $GITHUB_OUTPUT
+          else
+            echo "PULL_REQUEST=false" >> $GITHUB_OUTPUT
           fi
         env:
           GH_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
@@ -48,6 +50,6 @@ jobs:
       - name: "Enable auto-merge"
         run: |
           gh pr merge chore/charts --auto --squash
-        if: ${{ steps.merge.outputs.PULL_REQUEST == "true" }}
+        if: steps.merge.outputs.PULL_REQUEST == "true"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
