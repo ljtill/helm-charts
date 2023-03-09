@@ -50,6 +50,6 @@ jobs:
       - name: "Enable auto-merge"
         run: |
           gh pr merge chore/charts --auto --squash
-        if: steps.merge.outputs.PULL_REQUEST == "true"
+        if: steps.merge.outputs.PULL_REQUEST == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
