@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  cluster-api-operator:
+  - apiVersion: v2
+    appVersion: v0.1.0
+    created: "2023-03-12T02:11:12.372374196Z"
+    description: A Helm chart for Cluster API Operator
+    digest: 836a65a321321d60ed88e44f67f65862427ca9cde50c5bedaf671a7ea48106c3
+    name: cluster-api-operator
+    type: application
+    urls:
+    - https://github.com/ljtill/helm-charts/releases/download/cluster-api-operator-0.1.0/cluster-api-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-03-12T02:11:12.372398896Z"
