@@ -1,0 +1,16 @@
+replicaCount: 3
+
+image:
+  repository: kong/httpbin
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 8000
+
+container:
+  port: 80
