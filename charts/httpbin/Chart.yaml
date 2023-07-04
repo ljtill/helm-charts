@@ -4,4 +4,4 @@ description: A Helm chart for httpbin
 type: application
 version: 1.0.0
 maintainers:
-  - name: Lyon Till
+  - name: ljtill
