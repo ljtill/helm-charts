@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  httpbin:
+  - apiVersion: v2
+    created: "2023-07-04T23:50:55.231101464Z"
+    description: A Helm chart for httpbin
+    digest: eb00a868307098398878a00ac5bb62ef437f9c9b027e2e143e7523331f48e008
+    maintainers:
+    - name: ljtill
+    name: httpbin
+    type: application
+    urls:
+    - https://github.com/ljtill/helm-charts/releases/download/httpbin-1.0.0/httpbin-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-07-04T23:50:55.231110764Z"
