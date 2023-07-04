@@ -30,12 +30,6 @@ jobs:
       - name: "Create cluster"
         uses: helm/kind-action@v1.7.0
 
-      # - name: "Install dependencies"
-      #   run: |
-      #     helm repo add jetstack https://charts.jetstack.io
-      #     helm repo update
-      #     helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
-
       - name: "Lint charts"
         run: ct lint --all
 
