@@ -36,11 +36,8 @@ jobs:
       #     helm repo update
       #     helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
 
-      # - name: "Run tests"
-      #   run: ct install --chart-dirs . --charts .
-      #   working-directory: charts/placeholder
+      - name: "Lint charts"
+        run: ct lint --all
 
-      # - name: "Uninstall dependencies"
-      #   run: |
-      #     helm --namespace cert-manager delete cert-manager
-
+      - name: "Install charts"
+        run: ct install --all
