@@ -1,4 +1,4 @@
-name: Pull Request
+name: Test
 
 on:
   pull_request:
@@ -43,3 +43,4 @@ jobs:
       # - name: "Uninstall dependencies"
       #   run: |
       #     helm --namespace cert-manager delete cert-manager
+
